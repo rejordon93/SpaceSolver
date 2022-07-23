@@ -48,7 +48,7 @@ namespace Solver
                 furnitureSizes = furnitureSizes + furniture.Size;
             }
 
-            string furnitureName = ;
+            string furnitureName = "";
             foreach (Name name in names)
             {
                 furnitureName = furnitureName + name.Names;
