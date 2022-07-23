@@ -1,7 +1,6 @@
 public class Room
 {
   public int Size { get; set; }
-  public string Names { get; set; }
 }
 
 
@@ -9,7 +8,7 @@ public class Furniture
 
 {
     public int Size { get; set; }
-    public string Names { get; set; }
+    public string Name { get; set; }
 }
 
 public class Name : Furniture
@@ -33,7 +32,7 @@ namespace Solver
 {
     class SpaceSolver
     {
-        public static string DoseFurnitureFit(List<Room> rooms, List<Furniture> furnitures, List<Name> names)
+        public static string DoseFurnitureFit(List<Room> rooms, List<Furniture> furnitures)
         {
             int roomSizes = 0;
 
@@ -41,49 +40,42 @@ namespace Solver
             {
                 roomSizes = roomSizes + room.Size;
             }
-            
+            int count = 0;
             int furnitureSizes = 0;
             foreach (Furniture furniture in furnitures)
             {
                 furnitureSizes = furnitureSizes + furniture.Size;
+             
             }
-
-            string furnitureName = "";
-            foreach (Name name in names)
-            {
-                furnitureName = furnitureName + name.Names;
-            }
-
+          
             if (roomSizes >= furnitureSizes)
             {
-                return $"Furniture fits in all rooms {furnitureSizes}";
+                count++;
+                roomSizes = roomSizes - furnitureSizes;
             }
+                            
             else
             {
-                return $"this {furnitureName} doesn's fit in your room";
+                return $"this  {furnitures[count].Name} {furnitures[count].Size} doesn's fit in your room";
+
             }
+            return $"Furniture fits in all rooms";
         }
+    
         public static void Main(string[] args)
         {
 
             Room livingRoom = new Room();
             livingRoom.Size = 500;
-            livingRoom.Names = "Coolchair";
-            livingRoom.Names = "eatingChair";
-
 
 
             Room bedRoom = new Room();
             bedRoom.Size = 500;
-            bedRoom.Names = "Sonytv";
-
-
+          
 
             Room BathRoom = new Room();
             BathRoom.Size = 500;
-            BathRoom.Names = "BounceHouse1";
-
-
+            
 
             var allRooms = new List<Room>
                 {
@@ -94,16 +86,22 @@ namespace Solver
 
 
             Chair razerchair = new Chair();
-            razerchair.Size = 21200;
+            razerchair.Size = 20;
+            razerchair.Name = "razerchair";
 
             Chair kitchenChair = new Chair();
-            kitchenChair.Size = 22;
-          
+            kitchenChair.Size = 2222;
+            kitchenChair.Name = " kitchenChair";
+
+
             TV sonyTV = new TV();
-            sonyTV.Size = 65;
-          
+            sonyTV.Size = 115;
+            sonyTV.Name = "SonyTV";
+
+
             BounceHouse bounceHouse = new BounceHouse();
-            bounceHouse.Size = 10;
+            bounceHouse.Size = 210;
+            bounceHouse.Name = "bounceHouse";
          
 
             var allFurniture = new List<Furniture>
@@ -113,36 +111,14 @@ namespace Solver
                 sonyTV,
                 bounceHouse
             };
-
-            Name coolChair = new Name();
-            razerchair.Names = "Coolhair";
-
-            Name eatingChair = new Name();
-            kitchenChair.Names = " eatingChair";
-
-            Name sonytv = new Name();
-            sonyTV.Names = "Sonytv";
-
-            Name bounceHouse1 = new Name();
-            bounceHouse.Names = "BounceHouse1";
-
-
-
-            var allNames = new List<Name>
-            {
-                coolChair,
-                eatingChair,
-                sonytv,
-                bounceHouse1
-
-            };
-
       
            
 
-            string doseFurnitureFit = DoseFurnitureFit(allRooms, allFurniture, allNames);
+            string doseFurnitureFit = DoseFurnitureFit(allRooms, allFurniture);
 
             Console.WriteLine(doseFurnitureFit);
+
+            Console.ReadKey();
         }
     }
 }
