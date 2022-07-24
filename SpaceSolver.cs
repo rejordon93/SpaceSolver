@@ -20,18 +20,18 @@ public class Chair : Furniture
 
 public class TV : Furniture
 {
-   
 }
 
 public class BounceHouse : Furniture    
 {
-
 }
 
 namespace Solver
 {
     class SpaceSolver
     {
+
+
         public static string DoseFurnitureFit(List<Room> rooms, List<Furniture> furnitures)
         {
             int roomSizes = 0;
@@ -40,30 +40,44 @@ namespace Solver
             {
                 roomSizes = roomSizes + room.Size;
             }
-            int count = 0;
+
+            List<Furniture> furnituresItems = new List<Furniture>();
+
+
             int furnitureSizes = 0;
             foreach (Furniture furniture in furnitures)
             {
                 furnitureSizes = furnitureSizes + furniture.Size;
-             
-            }
-          
-            if (roomSizes >= furnitureSizes)
-            {
-                count++;
-                roomSizes = roomSizes - furnitureSizes;
-            }
-                            
-            else
-            {
-                return $"this  {furnitures[count].Name} {furnitures[count].Size} doesn's fit in your room";
 
+
+
+                if (roomSizes >= furnitureSizes)
+                {
+                    roomSizes = roomSizes - furnitureSizes;
+
+                    furnituresItems.Add(furniture);
+                }
+
+                else
+                {
+
+                    Console.WriteLine("the items did not fit");
+                    List<Furniture> NotfittedItems = furnitures.Except(furnituresItems).ToList();
+                    foreach (Furniture notfittedItems in NotfittedItems)
+                    {
+                        Console.WriteLine(notfittedItems.Name);
+                    }
+                    return "we coukdint fit all items";
+                }
             }
             return $"Furniture fits in all rooms";
         }
     
+
+    
         public static void Main(string[] args)
         {
+     
 
             Room livingRoom = new Room();
             livingRoom.Size = 500;
@@ -86,12 +100,12 @@ namespace Solver
 
 
             Chair razerchair = new Chair();
-            razerchair.Size = 20;
+            razerchair.Size = 2220;
             razerchair.Name = "razerchair";
 
             Chair kitchenChair = new Chair();
-            kitchenChair.Size = 2222;
-            kitchenChair.Name = " kitchenChair";
+            kitchenChair.Size = 222;
+            kitchenChair.Name = "kitchenChair";
 
 
             TV sonyTV = new TV();
@@ -100,7 +114,7 @@ namespace Solver
 
 
             BounceHouse bounceHouse = new BounceHouse();
-            bounceHouse.Size = 210;
+            bounceHouse.Size = 1111;
             bounceHouse.Name = "bounceHouse";
          
 
