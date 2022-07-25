@@ -1,6 +1,7 @@
+//SEQUENCE------------------------
 public class Room
 {
-  public int Size { get; set; }
+    public int Size { get; set; }
 }
 
 
@@ -12,20 +13,28 @@ public class Furniture
 }
 
 public class Name : Furniture
-{   
+{
 }
-public class Chair : Furniture 
+public class Chair : Furniture
 {
 }
 
-public class TV : Furniture
+public class Desk : Furniture
 {
 }
 
-public class BounceHouse : Furniture    
+public class Monitor : Furniture
 {
 }
 
+public class Bike : Furniture
+{
+}
+public class Bed : Furniture
+{
+}
+
+// SELECTION---------------------------
 namespace Solver
 {
     class SpaceSolver
@@ -50,7 +59,7 @@ namespace Solver
                 furnitureSizes = furnitureSizes + furniture.Size;
 
 
-
+                //ITERATION--------------------------
                 if (roomSizes >= furnitureSizes)
                 {
                     roomSizes = roomSizes - furnitureSizes;
@@ -67,17 +76,17 @@ namespace Solver
                     {
                         Console.WriteLine(notfittedItems.Name);
                     }
-                    return "we coukdint fit all items";
+                    return "Could not fit all the items";
                 }
             }
-            return $"Furniture fits in all rooms";
+            return $"items will fit you only have {furnitureSizes} Available space and total number of items  {furnitures.Count}";
         }
-    
 
-    
+        //LOOKING FOR THE WHAT ITEM WILL NOT FIT---
+        //SEQUENCE------------------------
         public static void Main(string[] args)
         {
-     
+
 
             Room livingRoom = new Room();
             livingRoom.Size = 500;
@@ -85,11 +94,11 @@ namespace Solver
 
             Room bedRoom = new Room();
             bedRoom.Size = 500;
-          
+
 
             Room BathRoom = new Room();
             BathRoom.Size = 500;
-            
+
 
             var allRooms = new List<Room>
                 {
@@ -99,34 +108,39 @@ namespace Solver
                 };
 
 
-            Chair razerchair = new Chair();
-            razerchair.Size = 2220;
-            razerchair.Name = "razerchair";
+            Chair razerChair = new Chair();
+            razerChair.Size = 20;
+            razerChair.Name = "razerChair";
 
-            Chair kitchenChair = new Chair();
-            kitchenChair.Size = 222;
-            kitchenChair.Name = "kitchenChair";
-
-
-            TV sonyTV = new TV();
-            sonyTV.Size = 115;
-            sonyTV.Name = "SonyTV";
+            Desk CodingDesk = new Desk();
+            CodingDesk.Size = 500;
+            CodingDesk.Name = "SmartDesk Core";
 
 
-            BounceHouse bounceHouse = new BounceHouse();
-            bounceHouse.Size = 1111;
-            bounceHouse.Name = "bounceHouse";
-         
+            Monitor Ultrawide = new Monitor();
+            Ultrawide.Size = 34;
+            Ultrawide.Name = "Gigabyte M34WQ";
+
+
+            Bike Peloton = new Bike();
+            Peloton.Size = 11;
+            Peloton.Name = "Peloton";
+
+            Bed KingSize = new Bed();
+            KingSize.Size = 150;
+            KingSize.Name = "Bed";
+
 
             var allFurniture = new List<Furniture>
             {
-                razerchair,
-                kitchenChair,
-                sonyTV,
-                bounceHouse
+                razerChair,
+                CodingDesk,
+                Ultrawide,
+                Peloton,
+                KingSize
             };
-      
-           
+
+
 
             string doseFurnitureFit = DoseFurnitureFit(allRooms, allFurniture);
 
