@@ -1,5 +1,5 @@
 //SEQUENCE------------------------
-public class Room
+public class Apartment
 {
     public int Size { get; set; }
 }
@@ -41,11 +41,11 @@ namespace Solver
     {
 
 
-        public static string DoseFurnitureFit(List<Room> rooms, List<Furniture> furnitures)
+        public static string DoseFurnitureFit(List<Apartment> rooms, List<Furniture> furnitures)
         {
             int roomSizes = 0;
 
-            foreach (Room room in rooms)
+            foreach (Apartment room in rooms)
             {
                 roomSizes = roomSizes + room.Size;
             }
@@ -88,19 +88,19 @@ namespace Solver
         {
 
 
-            Room livingRoom = new Room();
+            Apartment livingRoom = new Apartment();
             livingRoom.Size = 500;
 
 
-            Room bedRoom = new Room();
+            Apartment bedRoom = new Apartment();
             bedRoom.Size = 500;
 
 
-            Room BathRoom = new Room();
+            Apartment BathRoom = new Apartment();
             BathRoom.Size = 500;
 
 
-            var allRooms = new List<Room>
+            var allRooms = new List<Apartment>
                 {
                 livingRoom,
                 bedRoom,
